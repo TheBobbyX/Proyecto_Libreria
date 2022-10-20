@@ -282,7 +282,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Cedula`, `Pass`) VALUES
-('8-893-2450', '/0eu/Ao0wBGcs');
+('8-893-2450', '/0eu/Ao0wBGcs'),
+('8-855-1697','.WbJin0/1msCU'),
+('3-744-243','.IYhcp5gbHqk2');
 
 --
 -- Índices para tablas volcadas
