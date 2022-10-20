@@ -1,0 +1,568 @@
+@charset "UTF-8";
+*{
+	margin:0%;
+	padding:0%;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#navheader{
+	width:100%;
+	height:50px;
+	background-color:#332C29;
+
+}
+#navbar{
+	width:79%;
+	height:50px;
+	float:right;
+}
+#navbar ul{
+	list-style:none;
+}
+#navbar >li{
+	width:200px;
+	list-style:none;
+	float:left;
+}
+#navbar li a{
+	display:block;
+	color:white;
+	line-height:50px;
+	text-align:center;
+	font-size:120%;
+	text-decoration:none;
+	background-color:#332C29;
+}
+#navbar li ul {
+	display:none;
+	position:absolute;
+	min-width:200px;
+}
+#navbar li a:hover {
+	background-color:#434343;
+}
+
+#navbar li:hover > ul {
+	display:block;
+}
+#navbar li ul li {
+	position:relative;
+	z-index:9999;
+}
+#navbar li ul li ul {
+	right:-200px;
+	top:0px;
+	z-index:9999;
+}
+
+header img{
+	width:100%;
+	margin:0%;
+	padding:0%;
+
+}
+header {
+	height: 109px;
+	margin:0%;
+	padding:0%;
+
+}
+
+#logindiv{
+	width: 35%;
+	margin-top: 7%;
+  	position: relative;
+	left: 31%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+}
+#loginform{
+	width: 100%;
+}
+.logininput{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+.loginbott{
+	padding: 2%;
+	margin-top: 3.5%;
+	font-size: 120%;
+	border-radius: 6px;
+	width: 25%;
+	background-color:#332C29;
+	color:white;
+}
+
+#autordiv{
+	width: 25.5%; /*35*/
+	margin-top: 2%;
+  	position: relative;
+	left: 36.5%;
+	text-align: center;
+	border:2px solid #332C29;
+	border-radius: 2px;
+	padding:0.50%;
+}
+
+#lanno{
+	width: 25.5%; /*35*/
+	margin-top: 2%;
+  position: relative;
+	left: 36.6%;
+	text-align: center;
+	border:2px solid #332C29;
+	border-radius: 2px;
+	padding:0.50%;
+}
+
+#lanno h1{
+	font-size:150%;
+}
+
+#tautorescompleta{
+	position: relative;
+	left: 1.3%;
+}
+#tautorescompleta tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 100px;
+}
+
+#tautorescompleta th, #tautorescompleta td {
+  padding: 5px;
+  text-align: left;
+  width: 150px;
+}
+
+#tautorescompleta thead tr {
+   display: block;
+}
+
+#tautoresc1{
+	position: relative;
+	left: 9.5%;
+}
+
+#tautoresc1 tbody{
+  display:block;
+  width: 66%;
+  overflow: auto;
+  height: 150px;
+}
+
+#tautoresc1 th, #tautoresc1 td {
+  padding: 5px;
+  text-align: left;
+  width: 200px;
+}
+
+#tautoresc1 thead tr {
+   display: block;
+}
+
+
+#tcompleta{
+	position: relative;
+	left: 1.5%;
+}
+#tcompleta tbody{
+  display:block;
+  width: 102%;
+  overflow: auto;
+  height: 250px;
+}
+
+#tcompleta th, #tcompleta td {
+  padding: 7px;
+  text-align: left;
+  width: 150px;
+}
+
+#tcompleta thead tr {
+  display: block;
+}
+
+#tcompletabig{
+	position: relative;
+	left: 1.5%;
+	width: 90%;
+}
+#tcompletabig tbody{
+  display:block;
+  width: 102%;
+  overflow: auto;
+  height: 250px;
+}
+
+#tcompletabig th,#tcompletabig td {
+  padding: 5px;
+  text-align: left;
+  width: 110px;
+}
+
+#tcompletabig thead tr {
+  display: block;
+}
+
+#tcompletabig2{
+	position: relative;
+	left: 1.5%;
+	width: 55%;
+}
+#tcompletabig2 tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 250px;
+}
+
+#tcompletabig2 th,#tcompletabig2 td {
+  padding: 5px;
+  text-align: left;
+  width: 110px;
+}
+
+#tcompletabig2 thead tr {
+  display: block;
+}
+
+#PInicio{
+	width: 75%;
+	text-align:justify;
+	font-size:110%;
+	position: relative;
+	left: 13%;
+
+}
+footer{
+	width: 25%;
+	height:95px;
+	position: absolute;
+	left: 37.5%;
+	top:85.5%;
+  	justify-content: center;
+
+}
+#divinsta{
+	display:block;
+	width:21%;
+}
+#divinsta img{
+	width:100%;
+
+}
+#divface{
+	display:block;
+	position:relative;
+	left:40%;
+	/*bottom:94px;*/
+	bottom: 98%;
+	width:21%;
+}
+#divface img{
+	width:100%;
+
+}
+#divtwit{
+	display:block;
+	text-align:center;
+	position:relative;
+	left:79%;
+	/*bottom:189px;*/
+	bottom: 197%;
+	width:21%;
+}
+#divtwit img{
+	width:100%;
+
+}
+#txtredes {
+	width: 20%;
+	display:inline;
+}
+
+#Insert_A{
+	width: 30%;
+	margin-top: 6%;
+  position: relative;
+	left: 32.5%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+	height:180px;
+}
+
+#Insert_A h1{
+	font-size:150%;
+}
+
+#Insert_A form{
+	height:180px;
+}
+#Insert_T_A{
+	position: relative;
+	left: 0%;
+	text-align: left;
+	font-size: 150%;
+	top:10px;
+}
+#Insert_I_A{
+	position: relative;
+	left: 50%;
+	text-align: left;
+	bottom:81.5px;
+}
+#Insert_B_A{
+	position: relative;
+	bottom:85px;
+}
+
+#Insert_M_A{
+	position: relative;
+	left: 36.5%;
+	top:15px;
+	width: 50%;
+	font-size: 150%;
+}
+
+.Insert_A_input{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+
+#Insert_L{
+	width: 30%;
+	margin-top: 0.5%;
+  position: relative;
+	left: 32.5%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+	height:280px;
+}
+#Insert_L form{
+	height:290px;
+}
+#Insert_L h1{
+	font-size:150%;
+	position: relative;
+	bottom: 7%;
+}
+#Insert_T_L{
+	position: relative;
+	left: 0%;
+	text-align: left;
+	font-size: 130%;
+	bottom: 6%;
+}
+#Insert_I_L{
+	position: relative;
+	left: 50%;
+	text-align: left;
+	bottom:230px;
+	font-size:70%;
+}
+#Insert_B_L{
+	position: relative;
+	bottom:230px;
+}
+
+#Insert_M_L{
+	position: relative;
+	left: 36.5%;
+	top:15px;
+	width: 50%;
+	font-size: 150%;
+}
+
+.Insert_L_input{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+
+#Insert_E{
+	width: 30%;
+	margin-top: 2%;
+  	position: relative;
+	left: 32.5%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+	height:220px;
+}
+
+#Insert_E h1{
+	font-size:150%;
+}
+
+#Insert_E form{
+	height:250px;
+}
+
+#Insert_T_E{
+	position: relative;
+	left: 0%;
+	text-align: left;
+	font-size: 130%;
+	top:10px;
+}
+#Insert_I_E{
+	position: relative;
+	left: 50%;
+	text-align: left;
+	bottom:109px;
+	font-size:70%;
+}
+#Insert_B_E{
+	position: relative;
+	bottom:105px;
+}
+
+#Insert_M_E{
+	position: relative;
+	left: 36.5%;
+	top:15px;
+	width: 50%;
+	font-size: 150%;
+}
+
+.Insert_E_input{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+
+#Insert_IA{
+	width: 25%;
+	margin-top: 2%;
+  	position: relative;
+	left: 35%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+	height:230px;
+}
+#Insert_IA form{
+	height:250px;
+}
+
+#Insert_T_IA{
+	position: relative;
+	left: 0%;
+	text-align: left;
+	font-size: 130%;
+	top:25px;
+}
+#Insert_I_IA{
+	position: relative;
+	left: 50%;
+	text-align: left;
+	bottom:22px;
+	font-size:70%;
+}
+#Insert_B_IA{
+	position: relative;
+	bottom:5px;
+}
+
+#Insert_M_IA{
+	position: relative;
+	left: 36.5%;
+	top:15px;
+	width: 50%;
+	font-size: 150%;
+}
+
+.Insert_IA_input{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+
+#Update_A{
+	width: 30%;
+	margin-top: 6%;
+  position: relative;
+	left: 32.5%;
+	text-align: center;
+	border:4px solid #332C29;
+	border-radius: 6px;
+	padding:2%;
+	height:170px;
+}
+
+#Update_A h1{
+	font-size:150%;
+}
+
+#Update_A form{
+	height:180px;
+}
+#Update_T_A{
+	position: relative;
+	left: 0%;
+	text-align: left;
+	font-size: 150%;
+	top:30px;
+}
+#Update_I_A{
+	position: relative;
+	left: 50%;
+	text-align: left;
+	bottom:50.5px;
+}
+#Update_B_A{
+	position: relative;
+	bottom:55px;
+}
+
+#Update_M_A{
+	position: relative;
+	left:34.5%;
+	top:15px;
+	width: 50%;
+	font-size: 150%;
+}
+
+.Update_A_input,#Update_A_input_chang{
+  	width: 50%;
+  	font-size: 150%;
+	text-align: center;
+}
+
+#Update_A_Radio{
+  	position: relative;
+	Bottom:55px;
+
+}
+
+.centrear table, td, th {
+	border: 1px solid black; }
+
+table {
+	margin-left: auto; /*para centrear la tabla */
+	margin-right: auto; /*para centrear la tabla */
+	border-collapse: collapse; /*el borde de la tabla sale asï¿½ _________*/
+	width: 50%;  }
+
+th {
+	height: 50px;  }
+
+
+/*th { /*th es para celdas con titulos tablas
+	height: 50px;
+	width: 50px;  }
+
+tr { tr es para filas en tablas
+	height: 70px;
+	width: 70px;  }*/
