@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-12-2020 a las 21:02:39
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.6
+-- Servidor: localhost:3306
+-- Tiempo de generación: 20-10-2022 a las 22:26:10
+-- Versión del servidor: 8.0.30
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,12 +20,15 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `dblibros`
 --
+CREATE DATABASE IF NOT EXISTS `dblibros` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `dblibros`;
 
 DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_autor` (IN `param_id_autor` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_delete_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_autor` (IN `param_id_autor` INT)   BEGIN
 	set @s = CONCAT("DELETE FROM autor WHERE id_autor=", param_id_autor);
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -33,7 +36,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_autor` (IN `param_id_auto
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_editorial` (IN `param_id_editorial` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_delete_editorial`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_editorial` (IN `param_id_editorial` INT)   BEGIN
 	set @s = CONCAT("DELETE FROM editorial WHERE id_editorial=", param_id_editorial);
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -41,7 +45,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_editorial` (IN `param_id_
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_libro` (IN `param_isbn` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_delete_libro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_libro` (IN `param_isbn` INT)   BEGIN
 	set @s = CONCAT("DELETE FROM libro WHERE isbn=", param_isbn);
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -49,7 +54,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_delete_libro` (IN `param_isbn` I
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (IN `param_nombre` VARCHAR(30), IN `param_apellido` VARCHAR(30), IN `param_nacionalidad` VARCHAR(30))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_insert_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (IN `param_nombre` VARCHAR(30), IN `param_apellido` VARCHAR(30), IN `param_nacionalidad` VARCHAR(30))   BEGIN
 	set @s = CONCAT("INSERT INTO autor (Nombre,Apellido,Nacionalidad) VALUES('", param_nombre ,"','", param_apellido ,"','", param_nacionalidad ,"')");
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -57,7 +63,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_autor` (IN `param_nombre`
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_editorial` (IN `param_nombre_editorial` VARCHAR(50), IN `param_telefono` CHAR(10), IN `param_direccion` VARCHAR(100), IN `param_ciudad` VARCHAR(15), IN `param_provincia` VARCHAR(15))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_insert_editorial`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_editorial` (IN `param_nombre_editorial` VARCHAR(50), IN `param_telefono` CHAR(10), IN `param_direccion` VARCHAR(100), IN `param_ciudad` VARCHAR(15), IN `param_provincia` VARCHAR(15))   BEGIN
 	set @s = CONCAT("INSERT INTO editorial (Nombre_Editorial,Telefono,Direccion,Ciudad,Provincia) VALUES('", param_nombre_editorial ,"','", param_telefono ,"','", param_direccion ,"','", param_ciudad,"','", param_provincia ,"')");
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -65,7 +72,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_editorial` (IN `param_nom
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_libro` (IN `param_titulo` VARCHAR(100), IN `param_n_edicion` INT, IN `param_copyright` DATE, IN `param_n_pag` INT, IN `param_n_estanteria` INT, IN `param_n_ejemplares` INT, IN `param_precio` DECIMAL(10,2), IN `param_id_editorial` INT, IN `param_id_autor` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_insert_libro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_libro` (IN `param_titulo` VARCHAR(100), IN `param_n_edicion` INT, IN `param_copyright` DATE, IN `param_n_pag` INT, IN `param_n_estanteria` INT, IN `param_n_ejemplares` INT, IN `param_precio` DECIMAL(10,2), IN `param_id_editorial` INT, IN `param_id_autor` INT)   BEGIN
 	set @s = CONCAT("INSERT into  Libro (Titulo,N_Edicion,Copyright,N_Pag,N_Estanteria,N_Ejemplares,Precio,Id_Editorial,Id_Autor) VALUES\r\n\t('", param_titulo ,"',", param_n_edicion ,",'", param_copyright ,"',", param_n_pag ,",", param_n_estanteria ,",", param_n_ejemplares ,",", param_precio ,",", param_id_editorial ,",", param_id_autor ,")");
     PREPARE stmt from @s;
     EXECUTE stmt;
@@ -73,39 +81,48 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insert_libro` (IN `param_titulo`
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_autor` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_autor` ()   BEGIN
 	Select * from autor order by nombre;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_autor_nacionalidad` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_autor_nacionalidad`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_autor_nacionalidad` ()   BEGIN
 	Select nacionalidad 'NACIONALIDAD',count(*) 'CANTIDAD' from Autor group by nacionalidad;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_editorial` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_editorial`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_editorial` ()   BEGIN
 	Select * from editorial order by nombre_editorial;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_libro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro` ()   BEGIN
 	Select * from libro order by titulo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libros_nacionales` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_libros_nacionales`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libros_nacionales` ()   BEGIN
 	Select l.ISBN 'ISBN', l.Titulo 'Titulo', l.N_Edicion 'Edicion', l.Precio 'Precio' from libro l, Editorial e WHERE l.Id_Editorial = e.Id_Editorial and e.Ciudad = 'Panama' order by Titulo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libros_por_autor` (IN `param_id_autor` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_libros_por_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libros_por_autor` (IN `param_id_autor` INT)   BEGIN
 	Select l.Titulo,l.ISBN, l.N_Edicion, l.N_Estanteria, e.Nombre_Editorial, l.Precio from Libro l,Editorial e WHERE Id_Autor=param_id_autor and e.Id_Editorial=l.Id_Editorial order by Titulo;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro_año` (IN `param_año` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_libro_año`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro_año` (IN `param_año` INT)   BEGIN
     Select titulo 'Titulo', N_Ejemplares 'Numeros de Ejemplares' from libro where YEAR(Copyright)=param_año;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro_estanteria` ()  BEGIN
+DROP PROCEDURE IF EXISTS `sp_select_libro_estanteria`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_select_libro_estanteria` ()   BEGIN
     Select distinct N_Estanteria 'Estanteria', sum(N_Ejemplares) 'Total de Libros' from Libro group by N_Estanteria;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_autor` (IN `param_selection` VARCHAR(30), IN `param_id_autor` INT, IN `param_valor` VARCHAR(30))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_update_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_autor` (IN `param_selection` VARCHAR(30), IN `param_id_autor` INT, IN `param_valor` VARCHAR(30))   BEGIN
 	IF param_selection='Nombre' THEN 
         	set @s = CONCAT("UPDATE autor SET nombre='", param_valor ,"' WHERE id_autor='", param_id_autor ,"'");
     ELSEIF param_selection='Apellido' THEN
@@ -119,7 +136,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_autor` (IN `param_selecti
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_editorial` (IN `param_selection` VARCHAR(30), IN `param_id_editorial` INT, IN `param_valor` VARCHAR(30))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_update_editorial`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_editorial` (IN `param_selection` VARCHAR(30), IN `param_id_editorial` INT, IN `param_valor` VARCHAR(30))   BEGIN
 	IF param_selection='Nombre_Editorial' THEN 
         	set @s = CONCAT("UPDATE editorial SET Nombre_Editorial='", param_valor ,"' WHERE id_editorial=", param_id_editorial);
     ELSEIF param_selection='Telefono' THEN
@@ -137,7 +155,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_editorial` (IN `param_sel
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_libro` (IN `param_selection` VARCHAR(30), IN `param_isbn` INT, IN `param_valor` VARCHAR(30))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_update_libro`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_libro` (IN `param_selection` VARCHAR(30), IN `param_isbn` INT, IN `param_valor` VARCHAR(30))   BEGIN
 	IF param_selection='Titulo' THEN 
         	set @s = CONCAT("UPDATE libro SET Titulo='", param_valor ,"' WHERE isbn=", param_isbn);
     ELSEIF param_selection='N_Edicion' THEN
@@ -163,15 +182,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_update_libro` (IN `param_selecti
     DEALLOCATE PREPARE stmt;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_autor` (IN `param_id_autor` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_verificar_autor`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_autor` (IN `param_id_autor` INT)   BEGIN
 	select count(*) from autor where id_autor=param_id_autor;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_libro_año` (IN `param_año` INT)  BEGIN
+DROP PROCEDURE IF EXISTS `sp_verificar_libro_año`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_libro_año` (IN `param_año` INT)   BEGIN
     Select count(*) from Libro where year(Copyright)=param_año;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_usuario` (IN `param_cedula` CHAR(16), IN `param_pass` VARCHAR(20))  BEGIN
+DROP PROCEDURE IF EXISTS `sp_verificar_usuario`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_verificar_usuario` (IN `param_cedula` CHAR(16), IN `param_pass` VARCHAR(20))   BEGIN
 	select count(*) from usuarios WHERE cedula=param_cedula and pass=param_pass;
 END$$
 
@@ -183,12 +205,13 @@ DELIMITER ;
 -- Estructura de tabla para la tabla `autor`
 --
 
+DROP TABLE IF EXISTS `autor`;
 CREATE TABLE `autor` (
-  `Id_Autor` int(11) NOT NULL,
+  `Id_Autor` int NOT NULL,
   `Nombre` varchar(30) NOT NULL,
   `Apellido` varchar(30) NOT NULL,
   `Nacionalidad` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `autor`
@@ -208,14 +231,15 @@ INSERT INTO `autor` (`Id_Autor`, `Nombre`, `Apellido`, `Nacionalidad`) VALUES
 -- Estructura de tabla para la tabla `editorial`
 --
 
+DROP TABLE IF EXISTS `editorial`;
 CREATE TABLE `editorial` (
-  `Id_Editorial` int(11) NOT NULL,
+  `Id_Editorial` int NOT NULL,
   `Nombre_Editorial` varchar(50) NOT NULL,
   `Telefono` char(10) NOT NULL,
   `Direccion` varchar(100) NOT NULL,
   `Ciudad` varchar(15) NOT NULL,
   `Provincia` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `editorial`
@@ -236,18 +260,19 @@ INSERT INTO `editorial` (`Id_Editorial`, `Nombre_Editorial`, `Telefono`, `Direcc
 -- Estructura de tabla para la tabla `libro`
 --
 
+DROP TABLE IF EXISTS `libro`;
 CREATE TABLE `libro` (
-  `ISBN` int(11) NOT NULL,
+  `ISBN` int NOT NULL,
   `Titulo` varchar(100) NOT NULL,
-  `N_Edicion` int(11) NOT NULL,
+  `N_Edicion` int NOT NULL,
   `Copyright` date NOT NULL,
-  `N_Pag` int(11) DEFAULT NULL,
-  `N_Estanteria` int(11) NOT NULL,
-  `N_Ejemplares` int(11) NOT NULL,
+  `N_Pag` int DEFAULT NULL,
+  `N_Estanteria` int NOT NULL,
+  `N_Ejemplares` int NOT NULL,
   `Precio` decimal(10,2) NOT NULL,
-  `Id_Editorial` int(11) NOT NULL,
-  `Id_Autor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Id_Editorial` int NOT NULL,
+  `Id_Autor` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `libro`
@@ -272,19 +297,20 @@ INSERT INTO `libro` (`ISBN`, `Titulo`, `N_Edicion`, `Copyright`, `N_Pag`, `N_Est
 -- Estructura de tabla para la tabla `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `Cedula` char(16) NOT NULL,
   `Pass` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`Cedula`, `Pass`) VALUES
-('8-893-2450', '/0eu/Ao0wBGcs'),
-('8-855-1697','.WbJin0/1msCU'),
-('3-744-243','.IYhcp5gbHqk2');
+('3-744-243', '.IYhcp5gbHqk2'),
+('8-855-1697', '.WbJin0/1msCU'),
+('8-893-2450', '/0eu/Ao0wBGcs');
 
 --
 -- Índices para tablas volcadas
@@ -324,19 +350,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `Id_Autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1011;
+  MODIFY `Id_Autor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
 
 --
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `Id_Editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
+  MODIFY `Id_Editorial` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1008;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `ISBN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1259;
+  MODIFY `ISBN` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1259;
 
 --
 -- Restricciones para tablas volcadas
