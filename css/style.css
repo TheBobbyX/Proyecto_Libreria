@@ -55,7 +55,7 @@
 }
 
 header img{
-	width:100%;
+	width:101%;
 	margin:0%;
 	padding:0%;
 
@@ -127,7 +127,7 @@ header {
 }
 #tautorescompleta tbody{
   display:block;
-  width: 100%;
+  width: 99%;
   overflow: auto;
   height: 100px;
 }
@@ -171,7 +171,7 @@ header {
 }
 #tcompleta tbody{
   display:block;
-  width: 102%;
+  width: 101%;
   overflow: auto;
   height: 250px;
 }
@@ -193,7 +193,7 @@ header {
 }
 #tcompletabig tbody{
   display:block;
-  width: 102%;
+  width: 101%;
   overflow: auto;
   height: 250px;
 }
@@ -215,7 +215,7 @@ header {
 }
 #tcompletabig2 tbody{
   display:block;
-  width: 100%;
+  width: 101%;
   overflow: auto;
   height: 250px;
 }

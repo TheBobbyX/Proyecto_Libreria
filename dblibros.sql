@@ -310,6 +310,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`Cedula`, `Pass`) VALUES
 ('3-744-243', '.IYhcp5gbHqk2'),
 ('8-855-1697', '.WbJin0/1msCU'),
+('2-736-857', '0I5a3h1r3EGOg'),
 ('8-893-2450', '/0eu/Ao0wBGcs');
 
 --
