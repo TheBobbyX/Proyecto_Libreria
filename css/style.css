@@ -193,7 +193,7 @@ header {
 }
 #tcompletabig tbody{
   display:block;
-  width: 101%;
+  width: 102%;
   overflow: auto;
   height: 250px;
 }
