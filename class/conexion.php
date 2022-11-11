@@ -10,6 +10,7 @@ public function __construct(){
     echo "fallo al conectar a la base de datos ".$this->_db->connect_errno;
     return;
   }
+  $this->_db-> set_charset("utf8");
 }
 }
 ?>
