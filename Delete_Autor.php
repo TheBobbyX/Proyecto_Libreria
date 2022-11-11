@@ -1,6 +1,7 @@
 <?php
 /*Roberto Brown
 8-893-2450*/
+  ob_start();
   session_start();
   if(!isset($_SESSION["usuario_verificado"])){
     header("Location: Login.php");
