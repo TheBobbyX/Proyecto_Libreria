@@ -284,7 +284,7 @@ namespace LibreriaABC_Selenium_Test
         [TestCase("8-893-2450", "Roberto", "Karla", "Figueroa", "Panameña")]
         public void T008_EliminarAutor(string user, string pass, string nameA, string lastnameA, string nationality)
         {
-            string idA = null;
+            string idA = "";
 
             //tamaño de ventana y url
             webDriver.Manage().Window.Maximize();
