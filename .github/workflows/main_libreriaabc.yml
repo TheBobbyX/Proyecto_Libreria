@@ -63,7 +63,7 @@ jobs:
   
   test:
     env:
-      SOLUTION: 'LibreriaABC_Selenium_Test\LibreriaABC_Selenium_Test.sln'
+      SOLUTION: '\LibreriaABC_Selenium_Test\LibreriaABC_Selenium_Test.sln'
     runs-on: windows-latest
     needs: deploy
     steps:
