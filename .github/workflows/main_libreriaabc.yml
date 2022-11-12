@@ -1,12 +1,14 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - LibreriaABC
+name: Build, Deploy and Test PHP app to Azure Web App - LibreriaABC
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
   workflow_dispatch:
 
 jobs:
@@ -58,3 +60,32 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96A4FBC1292C43DAA9F8A0971BC2A8CB }}
           package: .
+  
+  test:
+  
+    env:
+      SOLUTION: 'LibreriaABC_Selenium_Test/LibreriaABC_Selenium_Test.sln'
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore $SOLUTION
+    - name: Build
+      run: dotnet build $SOLUTION --no-restore
+    - name: Test
+      run: dotnet test $SOLUTION --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
