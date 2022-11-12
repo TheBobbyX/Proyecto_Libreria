@@ -62,12 +62,10 @@ jobs:
           package: .
   
   test:
-  
     env:
       SOLUTION: 'LibreriaABC_Selenium_Test/LibreriaABC_Selenium_Test.sln'
-
     runs-on: windows-latest
-
+    needs: deploy
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
