@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build, Deploy and Test PHP app to Azure Web App - LibreriaABC
+name: Build, Deploy PHP app to Azure Web App and Selenium Web Test - LibreriaABC
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_web_php:
     runs-on: windows-latest
 
     steps:
@@ -39,9 +39,9 @@ jobs:
           name: php-app
           path: .
 
-  deploy:
+  deploy_web_php:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_web_php
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -61,11 +61,12 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96A4FBC1292C43DAA9F8A0971BC2A8CB }}
           package: .
   
-  test:
-    env:
-      SOLUTION: 'LibreriaABC_Selenium_Test/LibreriaABC_Selenium_Test.sln'
-    runs-on: ubuntu-latest
-    needs: deploy
+  selenium_test:
+    runs-on: windows-latest
+    needs: deploy_web_php
+    defaults:
+      run:
+        working-directory: LibreriaABC_Selenium_Test
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -73,11 +74,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore $SOLUTION
+      run: dotnet restore 
     - name: Build
-      run: dotnet build $SOLUTION --no-restore
+      run: dotnet build --no-restore
     - name: Test
-      run: dotnet test $SOLUTION --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
+      run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
       
     - name: Test Report
       uses: dorny/test-reporter@v1
