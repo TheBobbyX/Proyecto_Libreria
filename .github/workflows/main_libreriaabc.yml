@@ -64,7 +64,7 @@ jobs:
   test:
     env:
       SOLUTION: 'LibreriaABC_Selenium_Test/LibreriaABC_Selenium_Test.sln'
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: deploy
     steps:
     - uses: actions/checkout@v3
