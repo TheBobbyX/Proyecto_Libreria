@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build, Deploy PHP app to Azure Web App and Selenium Web Test - LibreriaABC
+name: Build and Deploy PHP app to Azure Web App - LibreriaABC
 
 on:
   push:
@@ -60,38 +60,11 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96A4FBC1292C43DAA9F8A0971BC2A8CB }}
           package: .
-  
-  selenium_test:
-    runs-on: windows-latest
-    needs: deploy_web_php
-    defaults:
-      run:
-        working-directory: LibreriaABC_Selenium_Test
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.0.x
-      - name: Restore dependencies
-        run: dotnet restore 
-      - name: Build
-        run: dotnet build --no-restore
-      - name: Test
-        run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" || true
-
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: DotNET Tests
-          path: "**/test-results.trx"                            
-          reporter: dotnet-trx
-          fail-on-error: true
           
-      - name: Upload artifact for Selenium Test job
-        uses: actions/upload-artifact@v3
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
         with:
-          name: NUnit Selenium Test App
-          path: LibreriaABC_Selenium_Test
-        
+          owner: TheBobbyX
+          repo: LibreriaABC_Selenium_Test
+          github_token: ${{ secrets.TEST_WEB_ACCESS_TOKEN }}
+          workflow_file_name: dotnet-CI.yml
+          ref: main
