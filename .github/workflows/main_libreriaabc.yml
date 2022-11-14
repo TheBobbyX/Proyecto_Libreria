@@ -89,7 +89,9 @@ jobs:
           reporter: dotnet-trx
           fail-on-error: true
           
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v3
-      - name: Display structure of downloaded files
-        run: ls -R *.jpg
+      - name: Upload artifact for Selenium Test job
+        uses: actions/upload-artifact@v3
+        with:
+          name: Screenshots test
+          path: /**/*.jpg
+        
