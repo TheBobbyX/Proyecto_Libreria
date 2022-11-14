@@ -61,7 +61,7 @@ jobs:
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96A4FBC1292C43DAA9F8A0971BC2A8CB }}
           package: .
           
-      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+      - uses: convictional/trigger-workflow-and-wait@v1.6.4
         with:
           owner: TheBobbyX
           repo: LibreriaABC_Selenium_Test
