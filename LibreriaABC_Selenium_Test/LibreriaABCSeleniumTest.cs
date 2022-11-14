@@ -7,11 +7,11 @@ namespace LibreriaABC_Selenium_Test
 {
     public class LibreriaABCSeleniumTest
     {
-        private string webURL = "https://libreriaabc.azurewebsites.net", textAlert;
+        private string webURL = "https://libreriaabc.azurewebsites.net", textAlert = "";
         private WebDriver webDriver;
         private ChromeOptions options;
-        private WebDriverWait wait;
-        private IAlert simpleAlert;
+        private WebDriverWait ? wait;
+        private IAlert ? simpleAlert;
 
         [SetUp]
         public void Setup()
